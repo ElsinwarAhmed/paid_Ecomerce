@@ -27,6 +27,7 @@
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
                                 class="ficon ft-maximize"></i></a></li>
                 </ul>
+
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
@@ -141,6 +142,7 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="dropdown dropdown-notification nav-item">
                         <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i
                                 class="ficon ft-mail"> </i></a>
