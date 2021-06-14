@@ -24,4 +24,7 @@ return [
     'free_delivery' => 'توصيل مجاني',
     'locale_delivery' => 'توصيل داخلي',
     'outer_delivery' => 'توصيل خارجي',
+
+    'required' => 'هذا الحقل المطلوب',
+    'numeric' => 'هذا الحقل يجب ان يكون رقم',
 ];

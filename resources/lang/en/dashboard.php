@@ -25,4 +25,6 @@ return [
     'locale_delivery' => 'locale delivery',
     'outer_delivery' => 'outer delivery',
 
+    'required' => 'this failed must be number',
+
 ];
