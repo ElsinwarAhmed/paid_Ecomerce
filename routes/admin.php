@@ -18,6 +18,7 @@ Route::group(
 
         Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
             Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+            Route::get('/logout', 'LoginController@logout')->name('admin.logout');
             Route::group(['prefix' => 'settings',], function () {
                 Route::get('shipping-method/{type}', 'SettingController@editShippings')->name('admin.settings.editShipping');
                 Route::post('shipping-method/{id}', 'SettingController@updateShippings')->name('admin.settings.updateShipping');
