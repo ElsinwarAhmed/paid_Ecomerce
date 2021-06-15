@@ -16,10 +16,18 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
+
+    //  لو كنت عامل دخول على الموقع .. ورحت زرت صفحة الدخول .. وانا اصلا عامل دخول للموقع .. ما ينقلنيش لصفحة الدخول
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+
+
+            if ($guard ==  'admin') {
+                return redirect(RouteServiceProvider::ADMIN);
+            } else {
+                return redirect(RouteServiceProvider::HOME);
+            }
         }
 
         return $next($request);
