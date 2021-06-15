@@ -26,19 +26,20 @@ class SettingController extends Controller
     public function updateShippings(ShippingRequest $request, $id)
     {
         try {
-
             $shippingMethod = Setting::find($id);
-            // if (!$shippingMethod) {
-            //     return redirect()->back()->with(['error' => 'طريقة الشحن غير موجودة']);
-            // }
+            if (!$shippingMethod) {
+                return redirect()->back()->with(['error' => 'طريقة الشحن غير موجودة']);
+            }
 
             DB::beginTransaction();
             $shippingMethod->update([
                 'plan_value' => $request->plan_value,
             ]);
 
+
             $shippingMethod->value = $request->value;
             $shippingMethod->Save();
+
 
             DB::commit();
             return redirect()->back()->with(['success' => 'تم تحديث البيانات بنجاح']);
