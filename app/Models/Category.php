@@ -19,8 +19,25 @@ class Category extends Model
 
     protected $casts = ['is_active' => 'boolean'];
 
-    public function categories()
+    public function scopeParent($q)
     {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        // return $q->where('parent_id', null);
+        return $q->whereNull('parent_id', null);
+    }
+
+    public function scopeChild($q)
+    {
+        return $q->whereNotNull('parent_id', null);
+    }
+
+    public function active()
+    {
+        return $this->is_active == 0 ? 'غير مفعل' : 'مفعل';
+    }
+
+
+    public function _parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 }
