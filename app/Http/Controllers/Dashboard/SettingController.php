@@ -38,7 +38,7 @@ class SettingController extends Controller
 
 
             $shippingMethod->value = $request->value;
-            $shippingMethod->Save();
+            $shippingMethod->save();
 
 
             DB::commit();
