@@ -30,6 +30,11 @@ class Category extends Model
         return $q->whereNotNull('parent_id', null);
     }
 
+    public function scopeIsactive($q)
+    {
+        return $q->where('is_active', 1);
+    }
+
     public function active()
     {
         return $this->is_active == 0 ? 'غير مفعل' : 'مفعل';

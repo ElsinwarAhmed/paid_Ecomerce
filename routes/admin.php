@@ -67,6 +67,17 @@ Route::group(
                 Route::post('update\{tag_id}', 'TagController@update')->name('admin.tags.update');
                 Route::get('delete\{tag_id}', 'TagController@delete')->name('admin.tags.delete');
             });
+
+
+            // ======= Tags =========
+            Route::group(['prefix' => 'products',], function () {
+                Route::get('/', 'ProductController@index')->name('admin.products');
+                Route::get('general-information', 'ProductController@create')->name('admin.products.general.create');
+                Route::post('store-general-information', 'ProductController@store')->name('admin.products.general.store');
+                Route::get('edit\{product_id}', 'ProductController@edit')->name('admin.products.edit');
+                Route::post('update\{product_id}', 'ProductController@update')->name('admin.products.update');
+                Route::get('delete\{product_id}', 'ProductController@delete')->name('admin.products.delete');
+            });
         });
     }
 );

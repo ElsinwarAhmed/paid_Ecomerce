@@ -5,50 +5,57 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Enumerations\CategorType;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\GeneralProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id', 'DESC')->paginate(PAGINATW_COUNT);
-        return view('dashboard.categories.index', compact('categories'));
+        // $categories = Category::orderBy('id', 'DESC')->paginate(PAGINATW_COUNT);
+        // return view('dashboard.categories.index', compact('categories'));
     }
 
 
     public function create()
     {
-        $categories = Category::select('id', 'parent_id')->get();
-        return view('dashboard.categories.create', compact('categories'));
+
+        $data = [];
+        $data['brands'] = Brand::isactive()->select('id')->get();
+        $data['tags'] = Tag::select('id')->get();
+        $data['categories'] = Category::isactive()->select('id')->get();
+
+        return view('dashboard.products.general.create', $data);
     }
 
-    public function store(CategoryRequest $request)
+    public function store(GeneralProductRequest $request)
     {
 
         try {
-            if (!$request->has('is_active')) {
-                $request->request->add(['is_active' => 0]);
-            } else {
-                $request->request->add(['is_active' => 1]);
-            }
+            // if (!$request->has('is_active')) {
+            //     $request->request->add(['is_active' => 0]);
+            // } else {
+            //     $request->request->add(['is_active' => 1]);
+            // }
 
-            if ($request->type == 1) {
-                $request->request->add(['parent_id' => null]);
-            }
-
-
-            DB::beginTransaction();
-            $category = Category::create($request->except('_token'));
-            $category->name = $request->name;
-            $category->save();
+            // DB::beginTransaction();
+            // $product = Product::create($request->except('_token'));
+            // $product->categories->attch()->$request->categories;
+            // $product->name = $request->name;
+            // $product->description = $request->description;
+            // $product->short_description = $request->short_description;
+            // $product->save();
 
 
-            DB::commit();
-            return redirect()->route('admin.categories')->with(['success' => 'تمت اضافة القسم بنجاح']);
+            // DB::commit();
+            // return redirect()->route('admin.categories')->with(['success' => 'تمت اضافة القسم بنجاح']);
         } catch (\Exception $ex) {
-            DB::rollBack();
+            // DB::rollBack();
             return redirect()->route('admin.categories')->with(['error' => 'فشل الاضافة']);
         }
     }
