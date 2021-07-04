@@ -14,11 +14,26 @@ class Product extends Model
 
     protected $fillable = ['brand_id', 'slug', 'sku', 'price', 'special_price', 'special_price_type', 'special_price_start', 'special_price_end', 'selling_price', 'manage_stock', 'qty', 'in_stock', 'is_active'];
 
+    protected $hidden = ['translations'];
+
     protected $casts = ['manage_stock' => 'boolean', 'in_stock' => 'boolean', 'is_active' => 'boolean'];
 
     protected $dates = ['special_price_start', 'special_price_end', 'start_date', 'end_date', 'deleted_at'];
 
     protected $translatedAttributes = ['name', 'description', 'short_description'];
+
+
+    public function scopeActive($q)
+    {
+        return $q->where('is_active', 1);
+    }
+
+
+    public function getActive()
+    {
+        return $this->is_active == 0 ? 'غير مفعل' : 'مفعل';
+    }
+
 
     public function brand()
     {
@@ -33,5 +48,15 @@ class Product extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag', 'product_tag');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\Image');
+    }
+
+    public function options()
+    {
+        return $this->hasMany('App\Models\Option');
     }
 }

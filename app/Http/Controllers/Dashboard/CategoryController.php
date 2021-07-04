@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id', 'DESC')->paginate(PAGINATW_COUNT);
+        $categories = Category::orderBy('id', 'DESC')->paginate(PAGINATE_COUNT);
         return view('dashboard.categories.index', compact('categories'));
     }
 

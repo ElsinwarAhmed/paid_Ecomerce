@@ -15,7 +15,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brands = Brand::orderBy('id', 'DESC')->paginate(PAGINATW_COUNT);
+        $brands = Brand::orderBy('id', 'DESC')->paginate(PAGINATE_COUNT);
         return view('dashboard.brands.index', compact('brands'));
     }
 
