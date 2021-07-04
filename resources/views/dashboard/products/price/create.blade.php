@@ -11,9 +11,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.categories')}}"> الاقسام </a>
+                                <li class="breadcrumb-item"><a href=""> المنتجات </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة قسم
+                                <li class="breadcrumb-item active">إضافة منتج
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> إضافة قسم  </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> إضافة منتج جديد  </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -43,67 +43,54 @@
                                 @include('dashboard.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form" action="{{route('admin.categories.store')}}"
+                                        <form class="form" action="{{route('admin.products.price.store')}}"
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
 
-                                            {{-- <div class="form-group">
-                                                <label> صوره القسم </label>
-                                                <label id="projectinput7" class="file center-block">
-                                                    <input type="file" id="file" name="photo">
-                                                    <span class="file-custom"></span>
-                                                </label>
-                                                @error('photo')
-                                                <span class="text-danger">{{$message}}</span>
-                                                @enderror
-                                            </div> --}}
-
+                                            <input type="hidden" name="product_id" value="{{$product_id}}">
                                             <div class="form-body">
-
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> بيانات السعر للمنتج </h4>
 
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم القسم </label>
-                                                                    <input type="text" value="{{old('name')}}" id="name"
+                                                                    <label for="projectinput1"> سعر المنتج </label>
+                                                                    <input type="number" value="{{old('price')}}"
                                                                            class="form-control"
                                                                            placeholder="  "
-                                                                           name="name">
-                                                                    @error("name")
+                                                                           name="price">
+                                                                    @error("price")
                                                                     <span class="text-danger">{{$message}}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
+
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم القسم بالرابط </label>
-                                                                    <input type="text" value="{{old('slug')}}" id="name"
+                                                                    <label for="projectinput1"> سعر خاص </label>
+                                                                    <input type="number" value="{{old('special_price')}}"
                                                                            class="form-control"
                                                                            placeholder="  "
-                                                                           name="slug">
-                                                                    @error("slug")
+                                                                           name="special_price">
+                                                                    @error("special_price")
                                                                     <span class="text-danger">{{$message}}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
 
 
-                                                            <div class="col-md-6 hidden" id="cats_list">
+                                                            <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label>اختر القسم الرئيسي</label>
-                                                                    <select name="parent_id" class="select2 form-control">
-                                                                        <optgroup label="الاقسام الرئيسيية">
-                                                                            @if($categories->count() >0)
-                                                                            @foreach ($categories as $categorie)
-                                                                            <option value="{{$categorie -> id}}">{{$categorie -> name}}</option>
-                                                                            @endforeach
-                                                                            @endif
+                                                                    <label for="projectinput1"> نوع السعر </label>
+                                                                    <select name="special_price_type" class="select2 form-controll" style="width: 100%">
+                                                                        <optgroup label="من فضلك اختر النوع">
+                                                                            <option value="percent">percent</option>
+                                                                            <option value="fixed">fixed</option>
                                                                         </optgroup>
                                                                     </select>
-                                                                    @error("parent_id")
+                                                                    @error("special_price_type")
                                                                     <span class="text-danger">{{$message}}</span>
                                                                     @enderror
                                                                 </div>
@@ -111,45 +98,30 @@
 
 
                                                             <div class="col-md-6">
-                                                                <div class="form-group mt-1">
-                                                                    <input type="checkbox" value="1"
-                                                                           name="is_active"
-                                                                           id="switcheryColor4"
-                                                                           class="switchery" data-color="success"
-                                                                           checked/>
-                                                                    <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة </label>
-
-                                                                    @error("active")
+                                                                <div class="form-group">
+                                                                    <label for="projectinput1"> تاريخ البداية </label>
+                                                                    <input type="date" value="{{old('special_price_start')}}"
+                                                                           class="form-control"
+                                                                           placeholder="  "
+                                                                           name="special_price_start">
+                                                                    @error("special_price_start")
                                                                     <span class="text-danger">{{$message}}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
 
-
-                                                            <div class="col-md-3">
-                                                                <div class="form-group mt-1">
-                                                                    <input type="radio" value="1"
-                                                                           name="type"
-                                                                           id="switcheryColor5"
-                                                                           class="switchery"
-                                                                           checked/>
-                                                                    <label for="switcheryColor5" class="card-title ml-1">قسم رئيسي </label>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="projectinput1"> تاريخ النهاية </label>
+                                                                    <input type="date" value="{{old('special_price_end')}}"
+                                                                           class="form-control"
+                                                                           placeholder="  "
+                                                                           name="special_price_end">
+                                                                    @error("special_price_end")
+                                                                    <span class="text-danger">{{$message}}</span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
-
-                                                            <div class="col-md-3">
-                                                                <div class="form-group mt-1">
-                                                                    <input type="radio" value="2"
-                                                                           name="type"
-                                                                           id="switcheryColor6"
-                                                                           class="switchery"/>
-                                                                    <label for="switcheryColor6" class="card-title ml-1">قسم فرعي </label>
-                                                                </div>
-                                                            </div>
-
-
-                                                        </div>
 
                                             </div>
 
@@ -174,20 +146,5 @@
             </div>
         </div>
     </div>
-
-@endsection
-
-
-@section('script')
-
-<script>
-    $('input:radio[name="type"]').change(function () {
-        if(this.value == '2' && this.checked){
-            $('#cats_list').removeClass('hidden');
-        } else {
-            $('#cats_list').addClass('hidden');
-        }
-    });
-</script>
 
 @endsection
