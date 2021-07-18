@@ -69,7 +69,7 @@ Route::group(
             });
 
 
-            // ======= Tags =========
+            // ======= products =========
             Route::group(['prefix' => 'products'], function () {
                 Route::get('/', 'ProductController@index')->name('admin.products');
                 Route::get('general-information', 'ProductController@create')->name('admin.products.general.create');
@@ -102,6 +102,13 @@ Route::group(
                 Route::get('edit\{option_id}', 'OptionController@edit')->name('admin.options.edit');
                 Route::post('update\{option_id}', 'OptionController@update')->name('admin.options.update');
                 Route::get('delete\{option_id}', 'OptionController@delete')->name('admin.options.delete');
+            });
+
+            // ======= Sliders =========
+            Route::group(['prefix' => 'sliders'], function () {
+                Route::get('/', 'SliderController@addImages')->name('admin.sliders.create');
+                Route::post('images', 'SliderController@saveSliderImages')->name('admin.sliders.store');
+                Route::post('images/db', 'SliderController@saveSliderImagesDB')->name('admin.sliders.store.db');
             });
         });
     }

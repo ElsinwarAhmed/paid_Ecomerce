@@ -12,4 +12,9 @@ class Image extends Model
     {
         return $this->belongsTo('App\Models\Product');
     }
+
+    public function getPhotoAttribute($v)
+    {
+        return $v != '' ? asset('images/products/' . $v) : '';
+    }
 }

@@ -93,6 +93,19 @@
                     </li>
                 </ul>
             </li>
+
+
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">سلايدر الرئيسية</span>
+                    <span
+                        class="badge badge badge-success  badge-pill float-right mr-2"></span>
+                </a>
+                <ul class="menu-content">
+                    <li class="active"><a class="menu-item" href="{{route('admin.sliders.create')}}" data-i18n="nav.dash.ecommerce"> صور السلايدر</a>
+                    </li>
+
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
