@@ -59,4 +59,10 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Option');
     }
+
+
+    public function wishlist()
+    {
+        return $this->belongsToMany('App\Models\User', 'wish_lists')->withTimestamps();
+    }
 }

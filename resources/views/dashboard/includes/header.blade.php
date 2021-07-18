@@ -49,12 +49,12 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <ul class="text-center" style="padding-right: 0">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                @endforeach
 
-                                        <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                            {{ $properties['native'] }}
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        @endforeach
                             </ul>
                         </div>
                     </li>

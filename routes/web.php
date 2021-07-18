@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,7 @@ Route::get('/test', function () {
     $cat = Category::find(1);
     return $cat->makeVisible(['translations']);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

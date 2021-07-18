@@ -86,6 +86,7 @@
                                             </tbody>
                                         </table>
 
+                                            {{ $products->links() }}
 
                                         <div class="justify-content-center d-flex">
 
